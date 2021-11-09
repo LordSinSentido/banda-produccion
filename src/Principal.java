@@ -12,12 +12,22 @@ import java.sql.*;
  * @author lordsinsentido
  */
 public class Principal extends javax.swing.JFrame {
+    ConexionBaseDeDatos conexionBaseDeDatos;
+    Connection conexion;
     
+    private boolean seInicioSesion = false;
 
     /**
      * Creates new form Principal
      */
     public Principal() {
+        try {
+            conexionBaseDeDatos = new ConexionBaseDeDatos();
+            conexion = conexionBaseDeDatos.conexion();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
         initComponents();
     }
 
@@ -32,29 +42,93 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane2 = new javax.swing.JTabbedPane();
         panelLogin = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        loginEntradaUsuario = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        loginEntradaContrasenna = new javax.swing.JPasswordField();
+        loginBotonIniciarSesión = new javax.swing.JButton();
         panelControl = new javax.swing.JPanel();
         panelAdmon = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        admonEntradaNombre = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        admonEntradaApellido = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        admonEntradaUsuario = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        admonEntradaContrasenna = new javax.swing.JPasswordField();
+        jLabel6 = new javax.swing.JLabel();
+        admonOpcionesRol = new javax.swing.JComboBox<>();
+        jSeparator1 = new javax.swing.JSeparator();
+        admonBotonCrearUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPane2.setEnabled(false);
+
+        panelLogin.setEnabled(false);
+
+        jLabel7.setText("Inicie su sesión");
+
+        jLabel8.setText("Nombre de usuario");
+
+        jLabel9.setText("Contraseña");
+
+        loginBotonIniciarSesión.setText("Iniciar sesión");
+        loginBotonIniciarSesión.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBotonIniciarSesiónActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
         panelLogin.setLayout(panelLoginLayout);
         panelLoginLayout.setHorizontalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
+            .addGroup(panelLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(panelLoginLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loginEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelLoginLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loginEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loginBotonIniciarSesión))
+                .addContainerGap(672, Short.MAX_VALUE))
         );
         panelLoginLayout.setVerticalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGroup(panelLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(loginEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(loginEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(loginBotonIniciarSesión)
+                .addContainerGap(334, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Inciar sesión", panelLogin);
+
+        panelControl.setEnabled(false);
 
         javax.swing.GroupLayout panelControlLayout = new javax.swing.GroupLayout(panelControl);
         panelControl.setLayout(panelControlLayout);
         panelControlLayout.setHorizontalGroup(
             panelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
+            .addGap(0, 981, Short.MAX_VALUE)
         );
         panelControlLayout.setVerticalGroup(
             panelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -63,15 +137,105 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Control de la banda", panelControl);
 
+        panelAdmon.setEnabled(false);
+
+        jLabel1.setText("Crear usuario nuevo");
+
+        jLabel2.setText("Nombre");
+
+        admonEntradaNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                admonEntradaNombreActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Apellido");
+
+        admonEntradaApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                admonEntradaApellidoActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Nombre de usuario");
+
+        jLabel5.setText("Contraseña");
+
+        jLabel6.setText("Rol");
+
+        admonOpcionesRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Operador", "Administrador" }));
+        admonOpcionesRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                admonOpcionesRolActionPerformed(evt);
+            }
+        });
+
+        admonBotonCrearUsuario.setText("Crear");
+        admonBotonCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                admonBotonCrearUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelAdmonLayout = new javax.swing.GroupLayout(panelAdmon);
         panelAdmon.setLayout(panelAdmonLayout);
         panelAdmonLayout.setHorizontalGroup(
             panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
+            .addGroup(panelAdmonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAdmonLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(admonEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(admonEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(admonOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                        .addComponent(admonBotonCrearUsuario))
+                    .addComponent(jSeparator1)
+                    .addGroup(panelAdmonLayout.createSequentialGroup()
+                        .addGroup(panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelAdmonLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(admonEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(admonEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panelAdmonLayout.setVerticalGroup(
             panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGroup(panelAdmonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(admonEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(admonEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(admonEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(admonEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(admonOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(admonBotonCrearUsuario))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 355, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Administración", panelAdmon);
@@ -90,13 +254,65 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void admonEntradaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admonEntradaNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_admonEntradaNombreActionPerformed
+
+    private void admonEntradaApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admonEntradaApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_admonEntradaApellidoActionPerformed
+
+    private void admonOpcionesRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admonOpcionesRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_admonOpcionesRolActionPerformed
+
+    private void admonBotonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admonBotonCrearUsuarioActionPerformed
+        try {
+            PreparedStatement agregarUsuario = conexion.prepareStatement("INSERT INTO usuarios VALUES(?,?,?,?,?,?);");
+            
+            agregarUsuario.setString(2, admonEntradaUsuario.getText().trim());
+            agregarUsuario.setString(3, admonEntradaContrasenna.getText().trim());
+            agregarUsuario.setString(4, admonEntradaNombre.getText().trim());
+            agregarUsuario.setString(5, admonEntradaApellido.getText().trim());
+            agregarUsuario.setInt(6, admonOpcionesRol.getSelectedIndex());
+            
+            agregarUsuario.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_admonBotonCrearUsuarioActionPerformed
+
+    private void loginBotonIniciarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBotonIniciarSesiónActionPerformed
+        try {
+            Statement iniciarSesion = conexion.createStatement();
+            ResultSet resultado = iniciarSesion.executeQuery("SELECT usuario, contrasenna FROM usuarios;");
+            
+            while(resultado.next()) {
+                if(resultado.getString(1).equals(loginEntradaUsuario.getText().trim()) && resultado.getString(2).equals(loginEntradaContrasenna.getText().trim())) {
+                    seInicioSesion = true;
+                    
+                    jTabbedPane2.setEnabled(seInicioSesion);
+                    loginEntradaUsuario.setEnabled(!seInicioSesion);
+                    loginEntradaContrasenna.setEnabled(!seInicioSesion);
+                    loginBotonIniciarSesión.setEnabled(!seInicioSesion);
+                    
+                    System.out.println("Se inició sesión");
+                }else{
+                    System.out.println("Hubo un error en la auteticación");
+                }
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_loginBotonIniciarSesiónActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         
-        ConexionBaseDeDatos conexionBaseDeDatos = new ConexionBaseDeDatos();
-        Connection conexion = conexionBaseDeDatos.conexion();
+        
         
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -130,7 +346,26 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton admonBotonCrearUsuario;
+    private javax.swing.JTextField admonEntradaApellido;
+    private javax.swing.JPasswordField admonEntradaContrasenna;
+    private javax.swing.JTextField admonEntradaNombre;
+    private javax.swing.JTextField admonEntradaUsuario;
+    private javax.swing.JComboBox<String> admonOpcionesRol;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JButton loginBotonIniciarSesión;
+    private javax.swing.JPasswordField loginEntradaContrasenna;
+    private javax.swing.JTextField loginEntradaUsuario;
     private javax.swing.JPanel panelAdmon;
     private javax.swing.JPanel panelControl;
     private javax.swing.JPanel panelLogin;
