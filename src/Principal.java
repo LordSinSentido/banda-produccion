@@ -79,10 +79,14 @@ public class Principal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         admonOpcionesRol = new javax.swing.JComboBox<>();
         admonBotonCrearUsuario = new javax.swing.JButton();
+        admonTextoAlerta = new javax.swing.JLabel();
         panelAdmon = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Control de banda de producción");
+        setAlwaysOnTop(true);
+        setLocation(new java.awt.Point(100, 100));
 
         panelLogin.setEnabled(false);
 
@@ -306,7 +310,8 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(panelAgregarLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(admonEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(admonEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(admonTextoAlerta))
                 .addContainerGap(257, Short.MAX_VALUE))
         );
         panelAgregarLayout.setVerticalGroup(
@@ -336,7 +341,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(admonOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(admonBotonCrearUsuario)
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(admonTextoAlerta)
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
         pestannasMenu.addTab("Agregar usuario", panelAgregar);
@@ -390,17 +397,30 @@ public class Principal extends javax.swing.JFrame {
 
     private void admonBotonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admonBotonCrearUsuarioActionPerformed
         try {
-            PreparedStatement agregarUsuario = conexion.prepareStatement("INSERT INTO usuarios VALUES(?,?,?,?,?,?);");
+            PreparedStatement agregarUsuario = conexion.prepareStatement("INSERT INTO usuarios VALUES(?,?,?,?,?,?);"); // Se crea el statement encargado de conectar con la base de datos y realizar la acción en ella
             
-            agregarUsuario.setString(2, admonEntradaUsuario.getText().trim());
-            agregarUsuario.setString(3, admonEntradaContrasenna.getText().trim());
-            agregarUsuario.setString(4, admonEntradaNombre.getText().trim());
-            agregarUsuario.setString(5, admonEntradaApellido.getText().trim());
-            agregarUsuario.setInt(6, admonOpcionesRol.getSelectedIndex());
+            if(!admonEntradaUsuario.getText().isEmpty() && !admonEntradaContrasenna.getText().isEmpty() && !admonEntradaNombre.getText().isEmpty() && !admonEntradaApellido.getText().isEmpty()){
+                agregarUsuario.setString(2, admonEntradaUsuario.getText().trim());
+                agregarUsuario.setString(3, admonEntradaContrasenna.getText().trim());
+                agregarUsuario.setString(4, admonEntradaNombre.getText().trim());
+                agregarUsuario.setString(5, admonEntradaApellido.getText().trim());
+                agregarUsuario.setInt(6, admonOpcionesRol.getSelectedIndex());
+
+                agregarUsuario.executeUpdate();
+
+                admonEntradaUsuario.setText("");
+                admonEntradaContrasenna.setText("");
+                admonEntradaNombre.setText("");
+                admonEntradaApellido.setText("");
+                admonOpcionesRol.setSelectedIndex(0);
+
+                admonTextoAlerta.setText("Se ha agregado el usuario a la base de datos");
+            }else{
+                admonTextoAlerta.setText("No se han introducido todos los campos necesarios para hacer el registro");
+            }
             
-            agregarUsuario.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            admonTextoAlerta.setText("No se pudo conectar con la base de datos");
         }
     }//GEN-LAST:event_admonBotonCrearUsuarioActionPerformed
 
@@ -439,7 +459,7 @@ public class Principal extends javax.swing.JFrame {
             }
             
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            admonTextoAlerta.setText("No se pudo conectar con la base de datos");
         }
     }//GEN-LAST:event_loginBotonIniciarSesiónActionPerformed
 
@@ -508,6 +528,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField admonEntradaNombre;
     private javax.swing.JTextField admonEntradaUsuario;
     private javax.swing.JComboBox<String> admonOpcionesRol;
+    private javax.swing.JLabel admonTextoAlerta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
