@@ -14,6 +14,7 @@ import java.sql.*;
 public class Principal extends javax.swing.JFrame {
     ConexionBaseDeDatos conexionBaseDeDatos;
     Connection conexion;
+    Usuario usuarioAutenticado;
     
     private boolean seInicioSesion = false;
 
@@ -29,6 +30,8 @@ public class Principal extends javax.swing.JFrame {
         }
         
         initComponents();
+        
+        desactivarPestannas();
     }
 
     /**
@@ -40,7 +43,7 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        pestannasMenu = new javax.swing.JTabbedPane();
         panelLogin = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -48,6 +51,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         loginEntradaContrasenna = new javax.swing.JPasswordField();
         loginBotonIniciarSesión = new javax.swing.JButton();
+        loginBotonCerrarSesion = new javax.swing.JButton();
+        loginTextoAlerta = new javax.swing.JLabel();
         panelControl = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -61,7 +66,7 @@ public class Principal extends javax.swing.JFrame {
         jSlider1 = new javax.swing.JSlider();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        panelAdmon = new javax.swing.JPanel();
+        panelAgregar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         admonEntradaNombre = new javax.swing.JTextField();
@@ -73,16 +78,15 @@ public class Principal extends javax.swing.JFrame {
         admonEntradaContrasenna = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         admonOpcionesRol = new javax.swing.JComboBox<>();
-        jSeparator1 = new javax.swing.JSeparator();
         admonBotonCrearUsuario = new javax.swing.JButton();
+        panelAdmon = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane2.setEnabled(false);
-
         panelLogin.setEnabled(false);
 
-        jLabel7.setText("Inicie su sesión");
+        jLabel7.setText("Inicio de sesión");
 
         jLabel8.setText("Nombre de usuario");
 
@@ -92,6 +96,14 @@ public class Principal extends javax.swing.JFrame {
         loginBotonIniciarSesión.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBotonIniciarSesiónActionPerformed(evt);
+            }
+        });
+
+        loginBotonCerrarSesion.setText("Cerrar sesión");
+        loginBotonCerrarSesion.setEnabled(false);
+        loginBotonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBotonCerrarSesionActionPerformed(evt);
             }
         });
 
@@ -111,8 +123,12 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(loginEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(loginBotonIniciarSesión))
-                .addContainerGap(672, Short.MAX_VALUE))
+                    .addGroup(panelLoginLayout.createSequentialGroup()
+                        .addComponent(loginBotonIniciarSesión, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(loginBotonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loginTextoAlerta))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
         panelLoginLayout.setVerticalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,11 +144,15 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(loginEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(loginBotonIniciarSesión)
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginBotonIniciarSesión)
+                    .addComponent(loginBotonCerrarSesion))
+                .addGap(18, 18, 18)
+                .addComponent(loginTextoAlerta)
+                .addContainerGap(323, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Inciar sesión", panelLogin);
+        pestannasMenu.addTab("Inciar sesión", panelLogin);
 
         panelControl.setEnabled(false);
 
@@ -185,7 +205,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel15)))
-                .addContainerGap(677, Short.MAX_VALUE))
+                .addContainerGap(268, Short.MAX_VALUE))
         );
         panelControlLayout.setVerticalGroup(
             panelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,12 +233,12 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(panelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15))
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Control de la banda", panelControl);
+        pestannasMenu.addTab("Control de la banda", panelControl);
 
-        panelAdmon.setEnabled(false);
+        panelAgregar.setEnabled(false);
 
         jLabel1.setText("Crear usuario nuevo");
 
@@ -251,12 +271,77 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        admonBotonCrearUsuario.setText("Crear");
+        admonBotonCrearUsuario.setText("Crear usuario");
         admonBotonCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 admonBotonCrearUsuarioActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout panelAgregarLayout = new javax.swing.GroupLayout(panelAgregar);
+        panelAgregar.setLayout(panelAgregarLayout);
+        panelAgregarLayout.setHorizontalGroup(
+            panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAgregarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAgregarLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(admonEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addGroup(panelAgregarLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(admonEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelAgregarLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(admonEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelAgregarLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(admonOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(admonBotonCrearUsuario)
+                    .addGroup(panelAgregarLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(admonEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(257, Short.MAX_VALUE))
+        );
+        panelAgregarLayout.setVerticalGroup(
+            panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAgregarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(admonEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(admonEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(admonEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(admonEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(admonOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(admonBotonCrearUsuario)
+                .addContainerGap(231, Short.MAX_VALUE))
+        );
+
+        pestannasMenu.addTab("Agregar usuario", panelAgregar);
+
+        jLabel16.setText("Administración de usuario registrados");
 
         javax.swing.GroupLayout panelAdmonLayout = new javax.swing.GroupLayout(panelAdmon);
         panelAdmon.setLayout(panelAdmonLayout);
@@ -264,72 +349,28 @@ public class Principal extends javax.swing.JFrame {
             panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAdmonLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelAdmonLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(admonEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(admonEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(admonOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
-                        .addComponent(admonBotonCrearUsuario))
-                    .addComponent(jSeparator1)
-                    .addGroup(panelAdmonLayout.createSequentialGroup()
-                        .addGroup(panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelAdmonLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(admonEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(admonEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jLabel16)
+                .addContainerGap(332, Short.MAX_VALUE))
         );
         panelAdmonLayout.setVerticalGroup(
             panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAdmonLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(admonEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(admonEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(admonEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(admonEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(admonOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(admonBotonCrearUsuario))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 355, Short.MAX_VALUE))
+                .addComponent(jLabel16)
+                .addContainerGap(446, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Administración", panelAdmon);
+        pestannasMenu.addTab("Administrar usuarios", panelAdmon);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addComponent(pestannasMenu)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addComponent(pestannasMenu)
         );
 
         pack();
@@ -364,22 +405,36 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_admonBotonCrearUsuarioActionPerformed
 
     private void loginBotonIniciarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBotonIniciarSesiónActionPerformed
-        try {
-            Statement iniciarSesion = conexion.createStatement();
-            ResultSet resultado = iniciarSesion.executeQuery("SELECT usuario, contrasenna FROM usuarios;");
+        try {   // Se manda la petición a la base de datos
+            Statement iniciarSesion = conexion.createStatement();   // Se crea el statement encargado de realizar la conexión y acción a la base de datos
+            ResultSet resultado = iniciarSesion.executeQuery("SELECT id, usuario, contrasenna, nombre, apellidos, rol FROM usuarios WHERE usuario = '" + loginEntradaUsuario.getText().trim() + "';");   // Se le asigna el comando a ejecutar, y posterior a ello, se guardan los resultados
             
-            while(resultado.next()) {
-                if(resultado.getString(1).equals(loginEntradaUsuario.getText().trim()) && resultado.getString(2).equals(loginEntradaContrasenna.getText().trim())) {
-                    seInicioSesion = true;
+            while(resultado.next()) {  // Aquí se busca entre los resultados al usuario que trata de iniciar sesión
+                if(resultado.getString(2).equals(loginEntradaUsuario.getText().trim()) && resultado.getString(3).equals(loginEntradaContrasenna.getText().trim())) {   // Se busca que el resultado que se encontró contenga el mismo usuario y la misma contraseña, si fue encontrado, ejecutará las siguientes líneas de código
+                    seInicioSesion = true;   // Se establece que se ha iniciado sesión
+                    usuarioAutenticado = new Usuario(resultado.getInt(1), resultado.getString(2), resultado.getString(4), resultado.getString(5), resultado.getInt(6));
                     
-                    jTabbedPane2.setEnabled(seInicioSesion);
-                    loginEntradaUsuario.setEnabled(!seInicioSesion);
-                    loginEntradaContrasenna.setEnabled(!seInicioSesion);
-                    loginBotonIniciarSesión.setEnabled(!seInicioSesion);
+                    switch(usuarioAutenticado.getRol()) {
+                        case 0 :
+                            pestannasMenu.setEnabledAt(1, true);
+                            break;
+                        case 1 :
+                            pestannasMenu.setEnabledAt(1, true);
+                            pestannasMenu.setEnabledAt(2, true);
+                            pestannasMenu.setEnabledAt(3, true);
+                            break;
+                    }
                     
-                    System.out.println("Se inició sesión");
-                }else{
-                    System.out.println("Hubo un error en la auteticación");
+                    loginEntradaUsuario.setEditable(false);
+                    loginEntradaContrasenna.setText("Protegemos tu contrasenna quitándola");
+                    loginEntradaContrasenna.setEditable(false);
+                    loginBotonIniciarSesión.setEnabled(false);
+                    loginBotonCerrarSesion.setEnabled(true);
+                    
+                    loginTextoAlerta.setText("Bienvenido " + usuarioAutenticado.getNombre() + " " + usuarioAutenticado.getApellido());
+                    
+                }else{   // Si no fue encontrado, se ejecutarán las siguientes líneas de código
+                    loginTextoAlerta.setText("No se ha encontrado el usuario, revisa tus credenciales y vuelve a intentarlo");
                 }
             }
             
@@ -388,6 +443,26 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_loginBotonIniciarSesiónActionPerformed
 
+    private void loginBotonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBotonCerrarSesionActionPerformed
+        desactivarPestannas();
+        
+        usuarioAutenticado = null;
+        
+        loginEntradaUsuario.setEditable(true);
+        loginEntradaContrasenna.setEditable(true);
+        loginEntradaContrasenna.setText("");
+        loginBotonIniciarSesión.setEnabled(true);
+        loginBotonCerrarSesion.setEnabled(false);
+        
+        loginTextoAlerta.setText("Se ha cerrado tu sesión");
+    }//GEN-LAST:event_loginBotonCerrarSesionActionPerformed
+
+    private void desactivarPestannas() {   // Función que deshabilita las pestañas del programa para que el usuario no pueda acceder a ellas
+        for(int i = 1; i < 4; i++) {
+            pestannasMenu.setEnabledAt(i, false);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -445,6 +520,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -453,14 +529,16 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSlider jSlider1;
-    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JButton loginBotonCerrarSesion;
     private javax.swing.JButton loginBotonIniciarSesión;
     private javax.swing.JPasswordField loginEntradaContrasenna;
     private javax.swing.JTextField loginEntradaUsuario;
+    private javax.swing.JLabel loginTextoAlerta;
     private javax.swing.JPanel panelAdmon;
+    private javax.swing.JPanel panelAgregar;
     private javax.swing.JPanel panelControl;
     private javax.swing.JPanel panelLogin;
+    private javax.swing.JTabbedPane pestannasMenu;
     // End of variables declaration//GEN-END:variables
 }
