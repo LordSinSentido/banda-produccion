@@ -1,5 +1,10 @@
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
+import javax.swing.Timer;
+import jssc.SerialPort;
+import jssc.SerialPortException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,9 +17,11 @@ import java.sql.*;
  * @author lordsinsentido
  */
 public class Principal extends javax.swing.JFrame {
-    ConexionBaseDeDatos conexionBaseDeDatos;
-    Connection conexion;
-    Usuario usuarioAutenticado;
+    private ConexionBaseDeDatos conexionBaseDeDatos;
+    private Connection conexion;
+    private Usuario usuarioAutenticado;
+    
+    private SerialPort puerto;
     
     private boolean seInicioSesion = false;
 
@@ -31,7 +38,7 @@ public class Principal extends javax.swing.JFrame {
         
         initComponents();
         
-        desactivarPestannas();
+        //desactivarPestannas();
     }
 
     /**
@@ -56,14 +63,14 @@ public class Principal extends javax.swing.JFrame {
         panelControl = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        controlBotonEncender = new javax.swing.JButton();
+        controlBotonApagar = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        jSlider1 = new javax.swing.JSlider();
+        controlSliderVelocidad = new javax.swing.JSlider();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         panelAgregar = new javax.swing.JPanel();
@@ -164,9 +171,14 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel11.setText("Seleccionar estado");
 
-        jButton1.setText("Encender");
+        controlBotonEncender.setText("Encender");
+        controlBotonEncender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                controlBotonEncenderActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Apagar");
+        controlBotonApagar.setText("Apagar");
 
         jLabel12.setText("Dirección de la banda");
 
@@ -193,9 +205,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jLabel11)
                     .addGroup(panelControlLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(controlBotonEncender, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(controlBotonApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel12)
                     .addGroup(panelControlLayout.createSequentialGroup()
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,7 +216,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel13)
-                    .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(controlSliderVelocidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelControlLayout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -220,8 +232,8 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(controlBotonEncender)
+                    .addComponent(controlBotonApagar))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -232,7 +244,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(controlSliderVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
@@ -477,12 +489,37 @@ public class Principal extends javax.swing.JFrame {
         loginTextoAlerta.setText("Se ha cerrado tu sesión");
     }//GEN-LAST:event_loginBotonCerrarSesionActionPerformed
 
+    private void controlBotonEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlBotonEncenderActionPerformed
+        try {   // Se intenta realizar la conexión con el puerto serial, si se logra conectar ejecutará el siguiente código
+            puerto = new SerialPort("/dev/ttyACM0");   // Se especifica el puerto al que se trata de conectar
+            puerto.openPort();   // Se inicializa el puerto
+            puerto.setParams(SerialPort.BAUDRATE_19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);   // Se establecen los parámetros que tendrá la conexión
+
+            
+            
+        } catch (SerialPortException ex) {   // En caso de que no se haya podido conectar, ejecutará el siguiente código
+        }
+    }//GEN-LAST:event_controlBotonEncenderActionPerformed
+
     private void desactivarPestannas() {   // Función que deshabilita las pestañas del programa para que el usuario no pueda acceder a ellas
         for(int i = 1; i < 4; i++) {
             pestannasMenu.setEnabledAt(i, false);
         }
     }
     
+    private Timer temporizador = new Timer(1500, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                puerto.writeString("a");
+                System.out.println("Enviado...");
+            } catch (SerialPortException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    });
+    
+     
     /**
      * @param args the command line arguments
      */
@@ -529,8 +566,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField admonEntradaUsuario;
     private javax.swing.JComboBox<String> admonOpcionesRol;
     private javax.swing.JLabel admonTextoAlerta;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton controlBotonApagar;
+    private javax.swing.JButton controlBotonEncender;
+    private javax.swing.JSlider controlSliderVelocidad;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -550,7 +588,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSlider jSlider1;
     private javax.swing.JButton loginBotonCerrarSesion;
     private javax.swing.JButton loginBotonIniciarSesión;
     private javax.swing.JPasswordField loginEntradaContrasenna;
