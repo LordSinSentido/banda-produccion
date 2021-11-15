@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 
@@ -25,9 +26,6 @@ public class Principal extends javax.swing.JFrame {
     
     private boolean seInicioSesion = false;
 
-    /**
-     * Creates new form Principal
-     */
     public Principal() {
         try {
             conexionBaseDeDatos = new ConexionBaseDeDatos();
@@ -37,6 +35,8 @@ public class Principal extends javax.swing.JFrame {
         }
         
         initComponents();
+        
+        traerDatos();
         
         //desactivarPestannas();
     }
@@ -50,6 +50,22 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogoActualizarUsuario = new javax.swing.JDialog();
+        jLabel17 = new javax.swing.JLabel();
+        dialogoCrearUsuario = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        usuarioEntradaNombre = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        usuarioEntradaApellido = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        usuarioEntradaUsuario = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        usuarioEntradaContrasenna = new javax.swing.JPasswordField();
+        jLabel6 = new javax.swing.JLabel();
+        usuarioOpcionesRol = new javax.swing.JComboBox<>();
+        usuarioBotonCrearUsuario = new javax.swing.JButton();
+        admonTextoAlerta = new javax.swing.JLabel();
         pestannasMenu = new javax.swing.JTabbedPane();
         panelLogin = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -73,27 +89,155 @@ public class Principal extends javax.swing.JFrame {
         controlSliderVelocidad = new javax.swing.JSlider();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        panelAgregar = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        usuarioEntradaNombre = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        usuarioEntradaApellido = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        usuarioEntradaUsuario = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        usuarioEntradaContrasenna = new javax.swing.JPasswordField();
-        jLabel6 = new javax.swing.JLabel();
-        usuarioOpcionesRol = new javax.swing.JComboBox<>();
-        usuarioBotonCrearUsuario = new javax.swing.JButton();
-        admonTextoAlerta = new javax.swing.JLabel();
         panelAdmon = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        admonTablaUsuarios = new javax.swing.JTable();
+        admonBotonCrearUsuario = new javax.swing.JButton();
+
+        dialogoActualizarUsuario.setTitle("Actualizar registro");
+        dialogoActualizarUsuario.setBounds(new java.awt.Rectangle(0, 0, 500, 400));
+        dialogoActualizarUsuario.setLocation(new java.awt.Point(50, 50));
+        dialogoActualizarUsuario.setModal(true);
+
+        jLabel17.setText("Hola");
+
+        javax.swing.GroupLayout dialogoActualizarUsuarioLayout = new javax.swing.GroupLayout(dialogoActualizarUsuario.getContentPane());
+        dialogoActualizarUsuario.getContentPane().setLayout(dialogoActualizarUsuarioLayout);
+        dialogoActualizarUsuarioLayout.setHorizontalGroup(
+            dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel17)
+                .addContainerGap(353, Short.MAX_VALUE))
+        );
+        dialogoActualizarUsuarioLayout.setVerticalGroup(
+            dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel17)
+                .addContainerGap(275, Short.MAX_VALUE))
+        );
+
+        dialogoCrearUsuario.setAlwaysOnTop(true);
+        dialogoCrearUsuario.setBounds(new java.awt.Rectangle(20, 20, 350, 275));
+        dialogoCrearUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        dialogoCrearUsuario.setFocusTraversalPolicyProvider(true);
+        dialogoCrearUsuario.setLocation(new java.awt.Point(50, 50));
+        dialogoCrearUsuario.setModal(true);
+
+        jLabel1.setText("Crear usuario nuevo");
+
+        jLabel2.setText("Nombre");
+
+        usuarioEntradaNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioEntradaNombreActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Apellido");
+
+        usuarioEntradaApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioEntradaApellidoActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Nombre de usuario");
+
+        jLabel5.setText("Contraseña");
+
+        jLabel6.setText("Rol");
+
+        usuarioOpcionesRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Operador", "Administrador" }));
+        usuarioOpcionesRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioOpcionesRolActionPerformed(evt);
+            }
+        });
+
+        usuarioBotonCrearUsuario.setText("Crear usuario");
+        usuarioBotonCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioBotonCrearUsuarioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogoCrearUsuarioLayout = new javax.swing.GroupLayout(dialogoCrearUsuario.getContentPane());
+        dialogoCrearUsuario.getContentPane().setLayout(dialogoCrearUsuarioLayout);
+        dialogoCrearUsuarioLayout.setHorizontalGroup(
+            dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usuarioEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usuarioEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usuarioEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usuarioEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                        .addComponent(admonTextoAlerta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usuarioBotonCrearUsuario))
+                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        dialogoCrearUsuarioLayout.setVerticalGroup(
+            dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(usuarioEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(usuarioEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(usuarioEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(usuarioEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(usuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(admonTextoAlerta))
+                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(usuarioBotonCrearUsuario)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Control de banda de producción");
         setAlwaysOnTop(true);
-        setLocation(new java.awt.Point(100, 100));
+        setBounds(new java.awt.Rectangle(20, 20, 500, 400));
+        setLocation(new java.awt.Point(50, 50));
 
         panelLogin.setEnabled(false);
 
@@ -160,7 +304,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(loginBotonCerrarSesion))
                 .addGap(18, 18, 18)
                 .addComponent(loginTextoAlerta)
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addContainerGap(331, Short.MAX_VALUE))
         );
 
         pestannasMenu.addTab("Inciar sesión", panelLogin);
@@ -254,113 +398,44 @@ public class Principal extends javax.swing.JFrame {
 
         pestannasMenu.addTab("Control de la banda", panelControl);
 
-        panelAgregar.setEnabled(false);
-
-        jLabel1.setText("Crear usuario nuevo");
-
-        jLabel2.setText("Nombre");
-
-        usuarioEntradaNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioEntradaNombreActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Apellido");
-
-        usuarioEntradaApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioEntradaApellidoActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Nombre de usuario");
-
-        jLabel5.setText("Contraseña");
-
-        jLabel6.setText("Rol");
-
-        usuarioOpcionesRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Operador", "Administrador" }));
-        usuarioOpcionesRol.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioOpcionesRolActionPerformed(evt);
-            }
-        });
-
-        usuarioBotonCrearUsuario.setText("Crear usuario");
-        usuarioBotonCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioBotonCrearUsuarioActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelAgregarLayout = new javax.swing.GroupLayout(panelAgregar);
-        panelAgregar.setLayout(panelAgregarLayout);
-        panelAgregarLayout.setHorizontalGroup(
-            panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAgregarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelAgregarLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usuarioEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1)
-                    .addGroup(panelAgregarLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usuarioEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelAgregarLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usuarioEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelAgregarLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(usuarioBotonCrearUsuario)
-                    .addGroup(panelAgregarLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usuarioEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(admonTextoAlerta))
-                .addContainerGap(257, Short.MAX_VALUE))
-        );
-        panelAgregarLayout.setVerticalGroup(
-            panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAgregarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(usuarioEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(usuarioEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(usuarioEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(usuarioEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(usuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(usuarioBotonCrearUsuario)
-                .addGap(18, 18, 18)
-                .addComponent(admonTextoAlerta)
-                .addContainerGap(213, Short.MAX_VALUE))
-        );
-
-        pestannasMenu.addTab("Agregar usuario", panelAgregar);
-
         jLabel16.setText("Administración de usuario registrados");
+
+        admonTablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Usuario", "Nombre", "Apellidos", "Rol"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        admonTablaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                admonTablaUsuariosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(admonTablaUsuarios);
+
+        admonBotonCrearUsuario.setText("Agregar usuario");
+        admonBotonCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                admonBotonCrearUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelAdmonLayout = new javax.swing.GroupLayout(panelAdmon);
         panelAdmon.setLayout(panelAdmonLayout);
@@ -368,15 +443,26 @@ public class Principal extends javax.swing.JFrame {
             panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAdmonLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel16)
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addGroup(panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAdmonLayout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdmonLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(admonBotonCrearUsuario)))
+                .addContainerGap())
         );
         panelAdmonLayout.setVerticalGroup(
             panelAdmonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAdmonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel16)
-                .addContainerGap(446, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(admonBotonCrearUsuario)
+                .addContainerGap())
         );
 
         pestannasMenu.addTab("Administrar usuarios", panelAdmon);
@@ -394,47 +480,6 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void usuarioEntradaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioEntradaNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioEntradaNombreActionPerformed
-
-    private void usuarioEntradaApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioEntradaApellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioEntradaApellidoActionPerformed
-
-    private void usuarioOpcionesRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioOpcionesRolActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioOpcionesRolActionPerformed
-
-    private void usuarioBotonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioBotonCrearUsuarioActionPerformed
-        try {
-            PreparedStatement agregarUsuario = conexion.prepareStatement("INSERT INTO usuarios VALUES(?,?,?,?,?,?);"); // Se crea el statement encargado de conectar con la base de datos y realizar la acción en ella
-            
-            if(!usuarioEntradaUsuario.getText().isEmpty() && !usuarioEntradaContrasenna.getText().isEmpty() && !usuarioEntradaNombre.getText().isEmpty() && !usuarioEntradaApellido.getText().isEmpty()){
-                agregarUsuario.setString(2, usuarioEntradaUsuario.getText().trim());
-                agregarUsuario.setString(3, usuarioEntradaContrasenna.getText().trim());
-                agregarUsuario.setString(4, usuarioEntradaNombre.getText().trim());
-                agregarUsuario.setString(5, usuarioEntradaApellido.getText().trim());
-                agregarUsuario.setInt(6, usuarioOpcionesRol.getSelectedIndex());
-
-                agregarUsuario.executeUpdate();
-
-                usuarioEntradaUsuario.setText("");
-                usuarioEntradaContrasenna.setText("");
-                usuarioEntradaNombre.setText("");
-                usuarioEntradaApellido.setText("");
-                usuarioOpcionesRol.setSelectedIndex(0);
-
-                admonTextoAlerta.setText("Se ha agregado el usuario a la base de datos");
-            }else{
-                admonTextoAlerta.setText("No se han introducido todos los campos necesarios para hacer el registro");
-            }
-            
-        } catch (Exception e) {
-            admonTextoAlerta.setText("No se pudo conectar con la base de datos");
-        }
-    }//GEN-LAST:event_usuarioBotonCrearUsuarioActionPerformed
 
     private void loginBotonIniciarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBotonIniciarSesiónActionPerformed
         try {   // Se manda la petición a la base de datos
@@ -494,12 +539,61 @@ public class Principal extends javax.swing.JFrame {
             puerto = new SerialPort("/dev/ttyACM0");   // Se especifica el puerto al que se trata de conectar
             puerto.openPort();   // Se inicializa el puerto
             puerto.setParams(SerialPort.BAUDRATE_19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);   // Se establecen los parámetros que tendrá la conexión
-
-            
-            
         } catch (SerialPortException ex) {   // En caso de que no se haya podido conectar, ejecutará el siguiente código
         }
     }//GEN-LAST:event_controlBotonEncenderActionPerformed
+
+    private void admonTablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admonTablaUsuariosMouseClicked
+        int filaSeleccionada = admonTablaUsuarios.getSelectedRow();
+        //dialogoActualizarDatos.setBounds(10, 10, 500, 400);
+        dialogoActualizarUsuario.setVisible(true);
+    }//GEN-LAST:event_admonTablaUsuariosMouseClicked
+
+    private void usuarioBotonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioBotonCrearUsuarioActionPerformed
+        try {
+            PreparedStatement agregarUsuario = conexion.prepareStatement("INSERT INTO usuarios VALUES(?,?,?,?,?,?);"); // Se crea el statement encargado de conectar con la base de datos y realizar la acción en ella
+
+            if(!usuarioEntradaUsuario.getText().isEmpty() && !usuarioEntradaContrasenna.getText().isEmpty() && !usuarioEntradaNombre.getText().isEmpty() && !usuarioEntradaApellido.getText().isEmpty()){
+                agregarUsuario.setString(2, usuarioEntradaUsuario.getText().trim());
+                agregarUsuario.setString(3, usuarioEntradaContrasenna.getText().trim());
+                agregarUsuario.setString(4, usuarioEntradaNombre.getText().trim());
+                agregarUsuario.setString(5, usuarioEntradaApellido.getText().trim());
+                agregarUsuario.setInt(6, usuarioOpcionesRol.getSelectedIndex());
+
+                agregarUsuario.executeUpdate();
+
+                usuarioEntradaUsuario.setText("");
+                usuarioEntradaContrasenna.setText("");
+                usuarioEntradaNombre.setText("");
+                usuarioEntradaApellido.setText("");
+                usuarioOpcionesRol.setSelectedIndex(0);
+
+                dialogoCrearUsuario.setVisible(false);
+                admonTextoAlerta.setText("");
+            }else{
+                admonTextoAlerta.setText("No se han introducido todos los campos necesarios para hacer el registro");
+            }
+
+        } catch (Exception e) {
+            admonTextoAlerta.setText("No se pudo conectar con la base de datos");
+        }
+    }//GEN-LAST:event_usuarioBotonCrearUsuarioActionPerformed
+
+    private void usuarioOpcionesRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioOpcionesRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuarioOpcionesRolActionPerformed
+
+    private void usuarioEntradaApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioEntradaApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuarioEntradaApellidoActionPerformed
+
+    private void usuarioEntradaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioEntradaNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuarioEntradaNombreActionPerformed
+
+    private void admonBotonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admonBotonCrearUsuarioActionPerformed
+        dialogoCrearUsuario.setVisible(true);
+    }//GEN-LAST:event_admonBotonCrearUsuarioActionPerformed
 
     private void desactivarPestannas() {   // Función que deshabilita las pestañas del programa para que el usuario no pueda acceder a ellas
         for(int i = 1; i < 4; i++) {
@@ -507,22 +601,39 @@ public class Principal extends javax.swing.JFrame {
         }
     }
     
-    private Timer temporizador = new Timer(1500, new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                puerto.writeString("a");
-                System.out.println("Enviado...");
-            } catch (SerialPortException ex) {
-                System.out.println(ex.getMessage());
+    private void traerDatos() {
+        DefaultTableModel tablaUsuarios = (DefaultTableModel) admonTablaUsuarios.getModel();
+        String [] datos = new String[5];
+        
+        try {
+            Statement iniciarSesion = conexion.createStatement();   // Se crea el statement encargado de realizar la conexión y acción a la base de datos
+            ResultSet resultado = iniciarSesion.executeQuery("SELECT id, usuario, nombre, apellidos, rol FROM usuarios;");   // Se le asigna el comando a ejecutar, y posterior a ello, se guardan los resultados
+            
+            while(resultado.next()) {
+                for(int i = 0; i < 4; i++) {
+                    datos[i] = resultado.getString(i + 1);
+                }
+                
+                switch(resultado.getInt(5)) {
+                    case 0:
+                        datos[4] = "Operador";
+                        break;
+                        
+                    case 1:
+                        datos[4] = "Administrador";
+                        break;
+                }
+                
+                tablaUsuarios.addRow(datos);
             }
+            
+            admonTablaUsuarios.setModel(tablaUsuarios);
+        } catch (Exception e) {
         }
-    });
+            
+    }
     
-     
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         
         
@@ -559,10 +670,14 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton admonBotonCrearUsuario;
+    private javax.swing.JTable admonTablaUsuarios;
     private javax.swing.JLabel admonTextoAlerta;
     private javax.swing.JButton controlBotonApagar;
     private javax.swing.JButton controlBotonEncender;
     private javax.swing.JSlider controlSliderVelocidad;
+    private javax.swing.JDialog dialogoActualizarUsuario;
+    private javax.swing.JDialog dialogoCrearUsuario;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -574,6 +689,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -582,13 +698,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton loginBotonCerrarSesion;
     private javax.swing.JButton loginBotonIniciarSesión;
     private javax.swing.JPasswordField loginEntradaContrasenna;
     private javax.swing.JTextField loginEntradaUsuario;
     private javax.swing.JLabel loginTextoAlerta;
     private javax.swing.JPanel panelAdmon;
-    private javax.swing.JPanel panelAgregar;
     private javax.swing.JPanel panelControl;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JTabbedPane pestannasMenu;
