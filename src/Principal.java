@@ -120,7 +120,7 @@ public class Principal extends javax.swing.JFrame {
         );
 
         dialogoCrearUsuario.setAlwaysOnTop(true);
-        dialogoCrearUsuario.setBounds(new java.awt.Rectangle(20, 20, 350, 275));
+        dialogoCrearUsuario.setBounds(new java.awt.Rectangle(20, 20, 350, 350));
         dialogoCrearUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         dialogoCrearUsuario.setFocusTraversalPolicyProvider(true);
         dialogoCrearUsuario.setLocation(new java.awt.Point(50, 50));
@@ -171,32 +171,33 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(admonTextoAlerta)
                     .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usuarioEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1)
-                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usuarioEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usuarioEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usuarioEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                        .addComponent(admonTextoAlerta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usuarioBotonCrearUsuario))
-                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(usuarioEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1)
+                            .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(usuarioEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(usuarioEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(usuarioEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(usuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(usuarioBotonCrearUsuario))
+                        .addGap(0, 7, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         dialogoCrearUsuarioLayout.setVerticalGroup(
             dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,13 +224,10 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(usuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(admonTextoAlerta))
-                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(usuarioBotonCrearUsuario)))
+                .addGap(18, 18, 18)
+                .addComponent(usuarioBotonCrearUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(admonTextoAlerta)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -567,11 +565,13 @@ public class Principal extends javax.swing.JFrame {
                 usuarioEntradaNombre.setText("");
                 usuarioEntradaApellido.setText("");
                 usuarioOpcionesRol.setSelectedIndex(0);
+                
+                traerDatos();
 
                 dialogoCrearUsuario.setVisible(false);
                 admonTextoAlerta.setText("");
             }else{
-                admonTextoAlerta.setText("No se han introducido todos los campos necesarios para hacer el registro");
+                admonTextoAlerta.setText("Faltan campos");
             }
 
         } catch (Exception e) {
