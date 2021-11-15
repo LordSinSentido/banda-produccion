@@ -76,16 +76,16 @@ public class Principal extends javax.swing.JFrame {
         panelAgregar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        admonEntradaNombre = new javax.swing.JTextField();
+        usuarioEntradaNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        admonEntradaApellido = new javax.swing.JTextField();
+        usuarioEntradaApellido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        admonEntradaUsuario = new javax.swing.JTextField();
+        usuarioEntradaUsuario = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        admonEntradaContrasenna = new javax.swing.JPasswordField();
+        usuarioEntradaContrasenna = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
-        admonOpcionesRol = new javax.swing.JComboBox<>();
-        admonBotonCrearUsuario = new javax.swing.JButton();
+        usuarioOpcionesRol = new javax.swing.JComboBox<>();
+        usuarioBotonCrearUsuario = new javax.swing.JButton();
         admonTextoAlerta = new javax.swing.JLabel();
         panelAdmon = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -260,17 +260,17 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre");
 
-        admonEntradaNombre.addActionListener(new java.awt.event.ActionListener() {
+        usuarioEntradaNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admonEntradaNombreActionPerformed(evt);
+                usuarioEntradaNombreActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Apellido");
 
-        admonEntradaApellido.addActionListener(new java.awt.event.ActionListener() {
+        usuarioEntradaApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admonEntradaApellidoActionPerformed(evt);
+                usuarioEntradaApellidoActionPerformed(evt);
             }
         });
 
@@ -280,17 +280,17 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel6.setText("Rol");
 
-        admonOpcionesRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Operador", "Administrador" }));
-        admonOpcionesRol.addActionListener(new java.awt.event.ActionListener() {
+        usuarioOpcionesRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Operador", "Administrador" }));
+        usuarioOpcionesRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admonOpcionesRolActionPerformed(evt);
+                usuarioOpcionesRolActionPerformed(evt);
             }
         });
 
-        admonBotonCrearUsuario.setText("Crear usuario");
-        admonBotonCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+        usuarioBotonCrearUsuario.setText("Crear usuario");
+        usuarioBotonCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admonBotonCrearUsuarioActionPerformed(evt);
+                usuarioBotonCrearUsuarioActionPerformed(evt);
             }
         });
 
@@ -304,25 +304,25 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(panelAgregarLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(admonEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(usuarioEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
                     .addGroup(panelAgregarLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(admonEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(usuarioEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelAgregarLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(admonEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(usuarioEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelAgregarLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(admonOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(admonBotonCrearUsuario)
+                        .addComponent(usuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usuarioBotonCrearUsuario)
                     .addGroup(panelAgregarLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(admonEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(usuarioEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(admonTextoAlerta))
                 .addContainerGap(257, Short.MAX_VALUE))
         );
@@ -334,25 +334,25 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(admonEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usuarioEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(admonEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usuarioEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(admonEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usuarioEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(admonEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usuarioEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(admonOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(admonBotonCrearUsuario)
+                .addComponent(usuarioBotonCrearUsuario)
                 .addGap(18, 18, 18)
                 .addComponent(admonTextoAlerta)
                 .addContainerGap(213, Short.MAX_VALUE))
@@ -395,36 +395,36 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void admonEntradaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admonEntradaNombreActionPerformed
+    private void usuarioEntradaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioEntradaNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_admonEntradaNombreActionPerformed
+    }//GEN-LAST:event_usuarioEntradaNombreActionPerformed
 
-    private void admonEntradaApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admonEntradaApellidoActionPerformed
+    private void usuarioEntradaApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioEntradaApellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_admonEntradaApellidoActionPerformed
+    }//GEN-LAST:event_usuarioEntradaApellidoActionPerformed
 
-    private void admonOpcionesRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admonOpcionesRolActionPerformed
+    private void usuarioOpcionesRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioOpcionesRolActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_admonOpcionesRolActionPerformed
+    }//GEN-LAST:event_usuarioOpcionesRolActionPerformed
 
-    private void admonBotonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admonBotonCrearUsuarioActionPerformed
+    private void usuarioBotonCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioBotonCrearUsuarioActionPerformed
         try {
             PreparedStatement agregarUsuario = conexion.prepareStatement("INSERT INTO usuarios VALUES(?,?,?,?,?,?);"); // Se crea el statement encargado de conectar con la base de datos y realizar la acción en ella
             
-            if(!admonEntradaUsuario.getText().isEmpty() && !admonEntradaContrasenna.getText().isEmpty() && !admonEntradaNombre.getText().isEmpty() && !admonEntradaApellido.getText().isEmpty()){
-                agregarUsuario.setString(2, admonEntradaUsuario.getText().trim());
-                agregarUsuario.setString(3, admonEntradaContrasenna.getText().trim());
-                agregarUsuario.setString(4, admonEntradaNombre.getText().trim());
-                agregarUsuario.setString(5, admonEntradaApellido.getText().trim());
-                agregarUsuario.setInt(6, admonOpcionesRol.getSelectedIndex());
+            if(!usuarioEntradaUsuario.getText().isEmpty() && !usuarioEntradaContrasenna.getText().isEmpty() && !usuarioEntradaNombre.getText().isEmpty() && !usuarioEntradaApellido.getText().isEmpty()){
+                agregarUsuario.setString(2, usuarioEntradaUsuario.getText().trim());
+                agregarUsuario.setString(3, usuarioEntradaContrasenna.getText().trim());
+                agregarUsuario.setString(4, usuarioEntradaNombre.getText().trim());
+                agregarUsuario.setString(5, usuarioEntradaApellido.getText().trim());
+                agregarUsuario.setInt(6, usuarioOpcionesRol.getSelectedIndex());
 
                 agregarUsuario.executeUpdate();
 
-                admonEntradaUsuario.setText("");
-                admonEntradaContrasenna.setText("");
-                admonEntradaNombre.setText("");
-                admonEntradaApellido.setText("");
-                admonOpcionesRol.setSelectedIndex(0);
+                usuarioEntradaUsuario.setText("");
+                usuarioEntradaContrasenna.setText("");
+                usuarioEntradaNombre.setText("");
+                usuarioEntradaApellido.setText("");
+                usuarioOpcionesRol.setSelectedIndex(0);
 
                 admonTextoAlerta.setText("Se ha agregado el usuario a la base de datos");
             }else{
@@ -434,7 +434,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (Exception e) {
             admonTextoAlerta.setText("No se pudo conectar con la base de datos");
         }
-    }//GEN-LAST:event_admonBotonCrearUsuarioActionPerformed
+    }//GEN-LAST:event_usuarioBotonCrearUsuarioActionPerformed
 
     private void loginBotonIniciarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBotonIniciarSesiónActionPerformed
         try {   // Se manda la petición a la base de datos
@@ -559,12 +559,6 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton admonBotonCrearUsuario;
-    private javax.swing.JTextField admonEntradaApellido;
-    private javax.swing.JPasswordField admonEntradaContrasenna;
-    private javax.swing.JTextField admonEntradaNombre;
-    private javax.swing.JTextField admonEntradaUsuario;
-    private javax.swing.JComboBox<String> admonOpcionesRol;
     private javax.swing.JLabel admonTextoAlerta;
     private javax.swing.JButton controlBotonApagar;
     private javax.swing.JButton controlBotonEncender;
@@ -598,5 +592,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel panelControl;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JTabbedPane pestannasMenu;
+    private javax.swing.JButton usuarioBotonCrearUsuario;
+    private javax.swing.JTextField usuarioEntradaApellido;
+    private javax.swing.JPasswordField usuarioEntradaContrasenna;
+    private javax.swing.JTextField usuarioEntradaNombre;
+    private javax.swing.JTextField usuarioEntradaUsuario;
+    private javax.swing.JComboBox<String> usuarioOpcionesRol;
     // End of variables declaration//GEN-END:variables
 }

@@ -314,29 +314,29 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="admonEntradaApellido" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="usuarioEntradaApellido" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="admonEntradaNombre" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="usuarioEntradaNombre" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="admonEntradaContrasenna" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="usuarioEntradaContrasenna" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="admonOpcionesRol" min="-2" max="-2" attributes="0"/>
+                              <Component id="usuarioOpcionesRol" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="admonBotonCrearUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="usuarioBotonCrearUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="admonEntradaUsuario" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="usuarioEntradaUsuario" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                           <Component id="admonTextoAlerta" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -352,30 +352,30 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="admonEntradaNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="usuarioEntradaNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="admonEntradaApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="usuarioEntradaApellido" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="admonEntradaUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="usuarioEntradaUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="admonEntradaContrasenna" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="usuarioEntradaContrasenna" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="admonOpcionesRol" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="usuarioOpcionesRol" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="admonBotonCrearUsuario" min="-2" max="-2" attributes="0"/>
+                      <Component id="usuarioBotonCrearUsuario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="admonTextoAlerta" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="213" max="32767" attributes="0"/>
@@ -394,9 +394,9 @@
                 <Property name="text" type="java.lang.String" value="Nombre"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="admonEntradaNombre">
+            <Component class="javax.swing.JTextField" name="usuarioEntradaNombre">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="admonEntradaNombreActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usuarioEntradaNombreActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
@@ -404,9 +404,9 @@
                 <Property name="text" type="java.lang.String" value="Apellido"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="admonEntradaApellido">
+            <Component class="javax.swing.JTextField" name="usuarioEntradaApellido">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="admonEntradaApellidoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usuarioEntradaApellidoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
@@ -414,21 +414,21 @@
                 <Property name="text" type="java.lang.String" value="Nombre de usuario"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="admonEntradaUsuario">
+            <Component class="javax.swing.JTextField" name="usuarioEntradaUsuario">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="admonEntradaContrasenna">
+            <Component class="javax.swing.JPasswordField" name="usuarioEntradaContrasenna">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Rol"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="admonOpcionesRol">
+            <Component class="javax.swing.JComboBox" name="usuarioOpcionesRol">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
@@ -438,18 +438,18 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="admonOpcionesRolActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usuarioOpcionesRolActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="admonBotonCrearUsuario">
+            <Component class="javax.swing.JButton" name="usuarioBotonCrearUsuario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear usuario"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="admonBotonCrearUsuarioActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usuarioBotonCrearUsuarioActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="admonTextoAlerta">
