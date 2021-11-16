@@ -51,7 +51,21 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         dialogoActualizarUsuario = new javax.swing.JDialog();
-        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        actualizarUsuarioEntradaNombre = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        actualizarUsuarioEntradaApellido = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        actualizarUsuarioEntradaUsuario = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        actualizarUsuarioEntradaContrasenna = new javax.swing.JPasswordField();
+        jLabel23 = new javax.swing.JLabel();
+        actualizarUsuarioOpcionesRol = new javax.swing.JComboBox<>();
+        actualizarUsuarioBotonActualizarUsuario = new javax.swing.JButton();
+        actualizarUsuarioTextoAlerta = new javax.swing.JLabel();
+        actualizarUsuarioBotonCancelar = new javax.swing.JButton();
+        actualizarIdUsuario = new javax.swing.JLabel();
         dialogoCrearUsuario = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -65,7 +79,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         usuarioOpcionesRol = new javax.swing.JComboBox<>();
         usuarioBotonCrearUsuario = new javax.swing.JButton();
-        admonTextoAlerta = new javax.swing.JLabel();
+        usuarioTextoAlerta = new javax.swing.JLabel();
         pestannasMenu = new javax.swing.JTabbedPane();
         panelLogin = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -96,27 +110,129 @@ public class Principal extends javax.swing.JFrame {
         admonBotonCrearUsuario = new javax.swing.JButton();
 
         dialogoActualizarUsuario.setTitle("Actualizar registro");
-        dialogoActualizarUsuario.setBounds(new java.awt.Rectangle(0, 0, 500, 400));
+        dialogoActualizarUsuario.setBounds(new java.awt.Rectangle(20, 20, 350, 350));
         dialogoActualizarUsuario.setLocation(new java.awt.Point(50, 50));
         dialogoActualizarUsuario.setModal(true);
 
-        jLabel17.setText("Hola");
+        jLabel18.setText("Actualizar usuario");
+
+        jLabel19.setText("Nombre");
+
+        actualizarUsuarioEntradaNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarUsuarioEntradaNombreActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setText("Apellido");
+
+        actualizarUsuarioEntradaApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarUsuarioEntradaApellidoActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setText("Nombre de usuario");
+
+        jLabel22.setText("Contraseña");
+
+        jLabel23.setText("Rol");
+
+        actualizarUsuarioOpcionesRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Operador", "Administrador" }));
+        actualizarUsuarioOpcionesRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarUsuarioOpcionesRolActionPerformed(evt);
+            }
+        });
+
+        actualizarUsuarioBotonActualizarUsuario.setText("Actualizar usuario");
+        actualizarUsuarioBotonActualizarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarUsuarioBotonActualizarUsuarioActionPerformed(evt);
+            }
+        });
+
+        actualizarUsuarioBotonCancelar.setText("Cancelar");
+        actualizarUsuarioBotonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarUsuarioBotonCancelarActionPerformed(evt);
+            }
+        });
+
+        actualizarIdUsuario.setEnabled(false);
 
         javax.swing.GroupLayout dialogoActualizarUsuarioLayout = new javax.swing.GroupLayout(dialogoActualizarUsuario.getContentPane());
         dialogoActualizarUsuario.getContentPane().setLayout(dialogoActualizarUsuarioLayout);
         dialogoActualizarUsuarioLayout.setHorizontalGroup(
             dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel17)
-                .addContainerGap(353, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(actualizarUsuarioEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(actualizarUsuarioEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(actualizarUsuarioEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(actualizarIdUsuario))
+                    .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(actualizarUsuarioEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(actualizarUsuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
+                        .addComponent(actualizarUsuarioBotonActualizarUsuario)
+                        .addGap(18, 18, 18)
+                        .addComponent(actualizarUsuarioBotonCancelar))
+                    .addComponent(actualizarUsuarioTextoAlerta))
+                .addContainerGap(436, Short.MAX_VALUE))
         );
         dialogoActualizarUsuarioLayout.setVerticalGroup(
             dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel17)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addGroup(dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(actualizarIdUsuario))
+                .addGap(18, 18, 18)
+                .addGroup(dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(actualizarUsuarioEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(actualizarUsuarioEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(actualizarUsuarioEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(actualizarUsuarioEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(actualizarUsuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(actualizarUsuarioBotonActualizarUsuario)
+                    .addComponent(actualizarUsuarioBotonCancelar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(actualizarUsuarioTextoAlerta)
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
         dialogoCrearUsuario.setAlwaysOnTop(true);
@@ -171,33 +287,30 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(admonTextoAlerta)
+                    .addComponent(usuarioTextoAlerta)
                     .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                        .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(usuarioEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1)
-                            .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(usuarioEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(usuarioEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(usuarioEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(usuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(usuarioBotonCrearUsuario))
-                        .addGap(0, 7, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usuarioEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usuarioEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usuarioEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usuarioEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogoCrearUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(usuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usuarioBotonCrearUsuario))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
         dialogoCrearUsuarioLayout.setVerticalGroup(
             dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +321,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(usuarioEntradaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(usuarioEntradaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -216,18 +329,18 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(usuarioEntradaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(usuarioEntradaContrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dialogoCrearUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(usuarioOpcionesRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(usuarioBotonCrearUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(admonTextoAlerta)
+                .addComponent(usuarioTextoAlerta)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -496,7 +609,6 @@ public class Principal extends javax.swing.JFrame {
                         case 1 :
                             pestannasMenu.setEnabledAt(1, true);
                             pestannasMenu.setEnabledAt(2, true);
-                            pestannasMenu.setEnabledAt(3, true);
                             break;
                     }
                     
@@ -514,7 +626,7 @@ public class Principal extends javax.swing.JFrame {
             }
             
         } catch (Exception e) {
-            admonTextoAlerta.setText("No se pudo conectar con la base de datos");
+            usuarioTextoAlerta.setText("No se pudo conectar con la base de datos");
         }
     }//GEN-LAST:event_loginBotonIniciarSesiónActionPerformed
 
@@ -542,8 +654,24 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_controlBotonEncenderActionPerformed
 
     private void admonTablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admonTablaUsuariosMouseClicked
-        int filaSeleccionada = admonTablaUsuarios.getSelectedRow();
-        //dialogoActualizarDatos.setBounds(10, 10, 500, 400);
+        String idDelUsuario = (String) admonTablaUsuarios.getValueAt(admonTablaUsuarios.getSelectedRow(), 0);
+        
+        try {
+            Statement traerUsuario = conexion.createStatement();   // Se crea el statement encargado de realizar la conexión y acción a la base de datos
+            ResultSet resultado = traerUsuario.executeQuery("SELECT id, usuario, contrasenna, nombre, apellidos, rol FROM usuarios WHERE id = " + idDelUsuario + ";");   // Se le asigna el comando a ejecutar, y posterior a ello, se guardan los resultados
+            
+            actualizarIdUsuario.setText(resultado.getString(1));
+            actualizarUsuarioEntradaUsuario.setText(resultado.getString(2));
+            actualizarUsuarioEntradaContrasenna.setText(resultado.getString(3));
+            actualizarUsuarioEntradaNombre.setText(resultado.getString(4));
+            actualizarUsuarioEntradaApellido.setText(resultado.getString(5));
+            actualizarUsuarioOpcionesRol.setSelectedIndex(resultado.getInt(6));
+            
+            //System.out.println(actualizarIdUsuario.getText());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
         dialogoActualizarUsuario.setVisible(true);
     }//GEN-LAST:event_admonTablaUsuariosMouseClicked
 
@@ -569,13 +697,13 @@ public class Principal extends javax.swing.JFrame {
                 traerDatos();
 
                 dialogoCrearUsuario.setVisible(false);
-                admonTextoAlerta.setText("");
+                usuarioTextoAlerta.setText("");
             }else{
-                admonTextoAlerta.setText("Faltan campos");
+                usuarioTextoAlerta.setText("Faltan campos");
             }
 
         } catch (Exception e) {
-            admonTextoAlerta.setText("No se pudo conectar con la base de datos");
+            usuarioTextoAlerta.setText("No se pudo conectar con la base de datos");
         }
     }//GEN-LAST:event_usuarioBotonCrearUsuarioActionPerformed
 
@@ -595,8 +723,56 @@ public class Principal extends javax.swing.JFrame {
         dialogoCrearUsuario.setVisible(true);
     }//GEN-LAST:event_admonBotonCrearUsuarioActionPerformed
 
+    private void actualizarUsuarioEntradaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarUsuarioEntradaNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_actualizarUsuarioEntradaNombreActionPerformed
+
+    private void actualizarUsuarioEntradaApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarUsuarioEntradaApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_actualizarUsuarioEntradaApellidoActionPerformed
+
+    private void actualizarUsuarioOpcionesRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarUsuarioOpcionesRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_actualizarUsuarioOpcionesRolActionPerformed
+
+    private void actualizarUsuarioBotonActualizarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarUsuarioBotonActualizarUsuarioActionPerformed
+        try {
+            PreparedStatement actualizarUsuario = conexion.prepareStatement("UPDATE usuarios SET usuario = ?, contrasenna = ?, nombre = ?, apellidos = ?, rol = ? WHERE id = " + actualizarIdUsuario.getText() + ";"); // Se crea el statement encargado de conectar con la base de datos y realizar la acción en ella
+
+            if(!actualizarUsuarioEntradaUsuario.getText().isEmpty() && !actualizarUsuarioEntradaContrasenna.getText().isEmpty() && !actualizarUsuarioEntradaNombre.getText().isEmpty() && !actualizarUsuarioEntradaApellido.getText().isEmpty()){
+                actualizarUsuario.setString(1, actualizarUsuarioEntradaUsuario.getText().trim());
+                actualizarUsuario.setString(2, actualizarUsuarioEntradaContrasenna.getText().trim());
+                actualizarUsuario.setString(3, actualizarUsuarioEntradaNombre.getText().trim());
+                actualizarUsuario.setString(4, actualizarUsuarioEntradaApellido.getText().trim());
+                actualizarUsuario.setInt(5, actualizarUsuarioOpcionesRol.getSelectedIndex());
+
+                actualizarUsuario.executeUpdate();
+
+                actualizarUsuarioEntradaUsuario.setText("");
+                actualizarUsuarioEntradaContrasenna.setText("");
+                actualizarUsuarioEntradaNombre.setText("");
+                actualizarUsuarioEntradaApellido.setText("");
+                actualizarUsuarioOpcionesRol.setSelectedIndex(0);
+                
+                traerDatos();
+
+                dialogoActualizarUsuario.setVisible(false);
+                actualizarUsuarioTextoAlerta.setText("");
+            }else{
+                actualizarUsuarioTextoAlerta.setText("Faltan campos");
+            }
+
+        } catch (Exception e) {
+            actualizarUsuarioTextoAlerta.setText("No se pudo conectar con la base de datos");
+        }
+    }//GEN-LAST:event_actualizarUsuarioBotonActualizarUsuarioActionPerformed
+
+    private void actualizarUsuarioBotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarUsuarioBotonCancelarActionPerformed
+        dialogoActualizarUsuario.setVisible(false);
+    }//GEN-LAST:event_actualizarUsuarioBotonCancelarActionPerformed
+
     private void desactivarPestannas() {   // Función que deshabilita las pestañas del programa para que el usuario no pueda acceder a ellas
-        for(int i = 1; i < 4; i++) {
+        for(int i = 1; i < 3; i++) {
             pestannasMenu.setEnabledAt(i, false);
         }
     }
@@ -606,8 +782,8 @@ public class Principal extends javax.swing.JFrame {
         String [] datos = new String[5];
         
         try {
-            Statement iniciarSesion = conexion.createStatement();   // Se crea el statement encargado de realizar la conexión y acción a la base de datos
-            ResultSet resultado = iniciarSesion.executeQuery("SELECT id, usuario, nombre, apellidos, rol FROM usuarios;");   // Se le asigna el comando a ejecutar, y posterior a ello, se guardan los resultados
+            Statement traerUsuarios = conexion.createStatement();   // Se crea el statement encargado de realizar la conexión y acción a la base de datos
+            ResultSet resultado = traerUsuarios.executeQuery("SELECT id, usuario, nombre, apellidos, rol FROM usuarios;");   // Se le asigna el comando a ejecutar, y posterior a ello, se guardan los resultados
             
             while(resultado.next()) {
                 for(int i = 0; i < 4; i++) {
@@ -670,9 +846,17 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel actualizarIdUsuario;
+    private javax.swing.JButton actualizarUsuarioBotonActualizarUsuario;
+    private javax.swing.JButton actualizarUsuarioBotonCancelar;
+    private javax.swing.JTextField actualizarUsuarioEntradaApellido;
+    private javax.swing.JPasswordField actualizarUsuarioEntradaContrasenna;
+    private javax.swing.JTextField actualizarUsuarioEntradaNombre;
+    private javax.swing.JTextField actualizarUsuarioEntradaUsuario;
+    private javax.swing.JComboBox<String> actualizarUsuarioOpcionesRol;
+    private javax.swing.JLabel actualizarUsuarioTextoAlerta;
     private javax.swing.JButton admonBotonCrearUsuario;
     private javax.swing.JTable admonTablaUsuarios;
-    private javax.swing.JLabel admonTextoAlerta;
     private javax.swing.JButton controlBotonApagar;
     private javax.swing.JButton controlBotonEncender;
     private javax.swing.JSlider controlSliderVelocidad;
@@ -689,8 +873,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -714,5 +903,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField usuarioEntradaNombre;
     private javax.swing.JTextField usuarioEntradaUsuario;
     private javax.swing.JComboBox<String> usuarioOpcionesRol;
+    private javax.swing.JLabel usuarioTextoAlerta;
     // End of variables declaration//GEN-END:variables
 }
