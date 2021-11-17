@@ -1,30 +1,14 @@
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.*;
-import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author lordsinsentido
- */
 public class Principal extends javax.swing.JFrame {
     private ConexionBaseDeDatos conexionBaseDeDatos;
     private Connection conexion;
     private Usuario usuarioAutenticado;
-    
     private SerialPort puerto;
-    
-    private boolean seInicioSesion = false;
 
     public Principal() {
         try {
@@ -38,7 +22,7 @@ public class Principal extends javax.swing.JFrame {
         
         traerDatos();
         
-        //desactivarPestannas();
+        desactivarPestannas();
     }
 
     /**
@@ -66,6 +50,7 @@ public class Principal extends javax.swing.JFrame {
         actualizarUsuarioTextoAlerta = new javax.swing.JLabel();
         actualizarUsuarioBotonCancelar = new javax.swing.JButton();
         actualizarIdUsuario = new javax.swing.JLabel();
+        actualizarUsuarioBotonEliminarUsuario = new javax.swing.JButton();
         dialogoCrearUsuario = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -114,6 +99,7 @@ public class Principal extends javax.swing.JFrame {
         dialogoActualizarUsuario.setLocation(new java.awt.Point(50, 50));
         dialogoActualizarUsuario.setModal(true);
 
+        jLabel18.setFont(new java.awt.Font("Cantarell", 0, 20)); // NOI18N
         jLabel18.setText("Actualizar usuario");
 
         jLabel19.setText("Nombre");
@@ -161,6 +147,13 @@ public class Principal extends javax.swing.JFrame {
 
         actualizarIdUsuario.setEnabled(false);
 
+        actualizarUsuarioBotonEliminarUsuario.setText("Eliminar usuario");
+        actualizarUsuarioBotonEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarUsuarioBotonEliminarUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout dialogoActualizarUsuarioLayout = new javax.swing.GroupLayout(dialogoActualizarUsuario.getContentPane());
         dialogoActualizarUsuario.getContentPane().setLayout(dialogoActualizarUsuarioLayout);
         dialogoActualizarUsuarioLayout.setHorizontalGroup(
@@ -168,6 +161,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(actualizarUsuarioTextoAlerta)
                     .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -195,8 +189,8 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(dialogoActualizarUsuarioLayout.createSequentialGroup()
                         .addComponent(actualizarUsuarioBotonActualizarUsuario)
                         .addGap(18, 18, 18)
-                        .addComponent(actualizarUsuarioBotonCancelar))
-                    .addComponent(actualizarUsuarioTextoAlerta))
+                        .addComponent(actualizarUsuarioBotonEliminarUsuario))
+                    .addComponent(actualizarUsuarioBotonCancelar))
                 .addContainerGap(436, Short.MAX_VALUE))
         );
         dialogoActualizarUsuarioLayout.setVerticalGroup(
@@ -229,12 +223,15 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(dialogoActualizarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(actualizarUsuarioBotonActualizarUsuario)
-                    .addComponent(actualizarUsuarioBotonCancelar))
+                    .addComponent(actualizarUsuarioBotonEliminarUsuario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(actualizarUsuarioBotonCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(actualizarUsuarioTextoAlerta)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
 
+        dialogoCrearUsuario.setTitle("Crear usuario");
         dialogoCrearUsuario.setAlwaysOnTop(true);
         dialogoCrearUsuario.setBounds(new java.awt.Rectangle(20, 20, 350, 350));
         dialogoCrearUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -242,6 +239,7 @@ public class Principal extends javax.swing.JFrame {
         dialogoCrearUsuario.setLocation(new java.awt.Point(50, 50));
         dialogoCrearUsuario.setModal(true);
 
+        jLabel1.setFont(new java.awt.Font("Cantarell", 0, 20)); // NOI18N
         jLabel1.setText("Crear usuario nuevo");
 
         jLabel2.setText("Nombre");
@@ -352,6 +350,7 @@ public class Principal extends javax.swing.JFrame {
 
         panelLogin.setEnabled(false);
 
+        jLabel7.setFont(new java.awt.Font("Cantarell", 0, 20)); // NOI18N
         jLabel7.setText("Inicio de sesión");
 
         jLabel8.setText("Nombre de usuario");
@@ -415,13 +414,14 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(loginBotonCerrarSesion))
                 .addGap(18, 18, 18)
                 .addComponent(loginTextoAlerta)
-                .addContainerGap(331, Short.MAX_VALUE))
+                .addContainerGap(325, Short.MAX_VALUE))
         );
 
         pestannasMenu.addTab("Inciar sesión", panelLogin);
 
         panelControl.setEnabled(false);
 
+        jLabel10.setFont(new java.awt.Font("Cantarell", 0, 20)); // NOI18N
         jLabel10.setText("Control de la banda de producción");
 
         jLabel11.setText("Seleccionar estado");
@@ -504,11 +504,12 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(panelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15))
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addContainerGap(236, Short.MAX_VALUE))
         );
 
         pestannasMenu.addTab("Control de la banda", panelControl);
 
+        jLabel16.setFont(new java.awt.Font("Cantarell", 0, 20)); // NOI18N
         jLabel16.setText("Administración de usuario registrados");
 
         admonTablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
@@ -570,7 +571,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(admonBotonCrearUsuario)
                 .addContainerGap())
@@ -599,7 +600,6 @@ public class Principal extends javax.swing.JFrame {
             
             while(resultado.next()) {  // Aquí se busca entre los resultados al usuario que trata de iniciar sesión
                 if(resultado.getString(2).equals(loginEntradaUsuario.getText().trim()) && resultado.getString(3).equals(loginEntradaContrasenna.getText().trim())) {   // Se busca que el resultado que se encontró contenga el mismo usuario y la misma contraseña, si fue encontrado, ejecutará las siguientes líneas de código
-                    seInicioSesion = true;   // Se establece que se ha iniciado sesión
                     usuarioAutenticado = new Usuario(resultado.getInt(1), resultado.getString(2), resultado.getString(4), resultado.getString(5), resultado.getInt(6));
                     
                     switch(usuarioAutenticado.getRol()) {
@@ -737,7 +737,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void actualizarUsuarioBotonActualizarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarUsuarioBotonActualizarUsuarioActionPerformed
         try {
-            PreparedStatement actualizarUsuario = conexion.prepareStatement("UPDATE usuarios SET usuario = ?, contrasenna = ?, nombre = ?, apellidos = ?, rol = ? WHERE id = " + actualizarIdUsuario.getText() + ";"); // Se crea el statement encargado de conectar con la base de datos y realizar la acción en ella
+            PreparedStatement actualizarUsuario = conexion.prepareStatement("UPDATE usuarios SET usuario = ?, contrasenna = ?, nombre = ?, apellidos = ?, rol = ? WHERE id = ?;"); // Se crea el statement encargado de conectar con la base de datos y realizar la acción en ella
 
             if(!actualizarUsuarioEntradaUsuario.getText().isEmpty() && !actualizarUsuarioEntradaContrasenna.getText().isEmpty() && !actualizarUsuarioEntradaNombre.getText().isEmpty() && !actualizarUsuarioEntradaApellido.getText().isEmpty()){
                 actualizarUsuario.setString(1, actualizarUsuarioEntradaUsuario.getText().trim());
@@ -745,6 +745,7 @@ public class Principal extends javax.swing.JFrame {
                 actualizarUsuario.setString(3, actualizarUsuarioEntradaNombre.getText().trim());
                 actualizarUsuario.setString(4, actualizarUsuarioEntradaApellido.getText().trim());
                 actualizarUsuario.setInt(5, actualizarUsuarioOpcionesRol.getSelectedIndex());
+                actualizarUsuario.setInt(6, Integer.parseInt(actualizarIdUsuario.getText()));
 
                 actualizarUsuario.executeUpdate();
 
@@ -771,6 +772,21 @@ public class Principal extends javax.swing.JFrame {
         dialogoActualizarUsuario.setVisible(false);
     }//GEN-LAST:event_actualizarUsuarioBotonCancelarActionPerformed
 
+    private void actualizarUsuarioBotonEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarUsuarioBotonEliminarUsuarioActionPerformed
+        try {
+            PreparedStatement eliminaUsuario = conexion.prepareStatement("DELETE FROM usuarios WHERE id = ?");
+            
+            eliminaUsuario.setInt(1, Integer.parseInt(actualizarIdUsuario.getText()));
+            
+            eliminaUsuario.executeUpdate();
+            
+            dialogoActualizarUsuario.setVisible(false);
+            traerDatos();
+        } catch (Exception e) {
+        }
+            
+    }//GEN-LAST:event_actualizarUsuarioBotonEliminarUsuarioActionPerformed
+
     private void desactivarPestannas() {   // Función que deshabilita las pestañas del programa para que el usuario no pueda acceder a ellas
         for(int i = 1; i < 3; i++) {
             pestannasMenu.setEnabledAt(i, false);
@@ -778,8 +794,14 @@ public class Principal extends javax.swing.JFrame {
     }
     
     private void traerDatos() {
-        DefaultTableModel tablaUsuarios = (DefaultTableModel) admonTablaUsuarios.getModel();
+        DefaultTableModel tablaUsuarios = new DefaultTableModel();
         String [] datos = new String[5];
+        
+        tablaUsuarios.addColumn("Identificador");
+        tablaUsuarios.addColumn("Usuario");
+        tablaUsuarios.addColumn("Nombre");
+        tablaUsuarios.addColumn("Apellidos");
+        tablaUsuarios.addColumn("Rol");
         
         try {
             Statement traerUsuarios = conexion.createStatement();   // Se crea el statement encargado de realizar la conexión y acción a la base de datos
@@ -849,6 +871,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel actualizarIdUsuario;
     private javax.swing.JButton actualizarUsuarioBotonActualizarUsuario;
     private javax.swing.JButton actualizarUsuarioBotonCancelar;
+    private javax.swing.JButton actualizarUsuarioBotonEliminarUsuario;
     private javax.swing.JTextField actualizarUsuarioEntradaApellido;
     private javax.swing.JPasswordField actualizarUsuarioEntradaContrasenna;
     private javax.swing.JTextField actualizarUsuarioEntradaNombre;

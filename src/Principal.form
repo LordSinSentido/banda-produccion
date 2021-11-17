@@ -20,6 +20,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="actualizarUsuarioTextoAlerta" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -53,9 +54,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="actualizarUsuarioBotonActualizarUsuario" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="actualizarUsuarioBotonCancelar" min="-2" max="-2" attributes="0"/>
+                          <Component id="actualizarUsuarioBotonEliminarUsuario" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="actualizarUsuarioTextoAlerta" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="actualizarUsuarioBotonCancelar" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="436" max="32767" attributes="0"/>
               </Group>
@@ -97,11 +98,13 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="actualizarUsuarioBotonActualizarUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="actualizarUsuarioBotonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="actualizarUsuarioBotonEliminarUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="actualizarUsuarioBotonCancelar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="actualizarUsuarioTextoAlerta" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="252" max="32767" attributes="0"/>
+                  <EmptySpace pref="215" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -109,6 +112,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel18">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Cantarell" size="20" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Actualizar usuario"/>
           </Properties>
         </Component>
@@ -190,10 +196,19 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JButton" name="actualizarUsuarioBotonEliminarUsuario">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Eliminar usuario"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarUsuarioBotonEliminarUsuarioActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="dialogoCrearUsuario">
       <Properties>
+        <Property name="title" type="java.lang.String" value="Crear usuario"/>
         <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
           <Rectangle value="[20, 20, 350, 350]"/>
@@ -289,6 +304,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Cantarell" size="20" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Crear usuario nuevo"/>
           </Properties>
         </Component>
@@ -466,7 +484,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="loginTextoAlerta" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="331" max="32767" attributes="0"/>
+                      <EmptySpace pref="325" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -474,6 +492,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Cantarell" size="20" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Inicio de sesi&#xf3;n"/>
               </Properties>
             </Component>
@@ -586,7 +607,7 @@
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="242" max="32767" attributes="0"/>
+                      <EmptySpace pref="236" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -594,6 +615,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Cantarell" size="20" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Control de la banda de producci&#xf3;n"/>
               </Properties>
             </Component>
@@ -690,7 +714,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="423" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="417" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="admonBotonCrearUsuario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -701,6 +725,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel16">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Cantarell" size="20" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Administraci&#xf3;n de usuario registrados"/>
               </Properties>
             </Component>
