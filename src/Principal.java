@@ -8,7 +8,8 @@ public class Principal extends javax.swing.JFrame {
     private ConexionBaseDeDatos conexionBaseDeDatos;
     private Connection conexion;
     private Usuario usuarioAutenticado;
-    private SerialPort puerto;
+    //private SerialPort puerto;
+    private ConexionArduino conexionArduino;
 
     public Principal() {
         try {
@@ -17,6 +18,8 @@ public class Principal extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        
+        conexionArduino = new ConexionArduino();
         
         initComponents();
         
@@ -94,7 +97,7 @@ public class Principal extends javax.swing.JFrame {
         admonTablaUsuarios = new javax.swing.JTable();
         admonBotonCrearUsuario = new javax.swing.JButton();
 
-        dialogoActualizarUsuario.setTitle("Actualizar registro");
+        dialogoActualizarUsuario.setTitle("Actualizar usuario");
         dialogoActualizarUsuario.setBounds(new java.awt.Rectangle(20, 20, 350, 350));
         dialogoActualizarUsuario.setLocation(new java.awt.Point(50, 50));
         dialogoActualizarUsuario.setModal(true);
@@ -645,12 +648,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_loginBotonCerrarSesionActionPerformed
 
     private void controlBotonEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlBotonEncenderActionPerformed
-        try {   // Se intenta realizar la conexión con el puerto serial, si se logra conectar ejecutará el siguiente código
-            puerto = new SerialPort("/dev/ttyACM0");   // Se especifica el puerto al que se trata de conectar
-            puerto.openPort();   // Se inicializa el puerto
-            puerto.setParams(SerialPort.BAUDRATE_19200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);   // Se establecen los parámetros que tendrá la conexión
-        } catch (SerialPortException ex) {   // En caso de que no se haya podido conectar, ejecutará el siguiente código
-        }
+        conexionArduino.mandarMensaje("1");
     }//GEN-LAST:event_controlBotonEncenderActionPerformed
 
     private void admonTablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admonTablaUsuariosMouseClicked
