@@ -24,7 +24,7 @@ void setup() {
 
   // Inicializamos los parámetros de enlace con las demás antenas
   if (!nrf24.setRF(RH_NRF24::DataRate2Mbps, RH_NRF24::TransmitPower0dBm)) {   // Se verifica que los parámetros se establezcan, si no, se ejecuta el siguiente código
-    Serial.println("No se pudo configurar la  transmisión");   // Se le informa al usuario mediante un mensaje
+    Serial.println("No se pudo configurar la transmisión");   // Se le informa al usuario mediante un mensaje
     listoParaTransmitir = false;   // Se establece que el dispositivo no está listo para transmitir
   }
 
