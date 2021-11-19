@@ -8,7 +8,6 @@ public class Principal extends javax.swing.JFrame {
     private ConexionBaseDeDatos conexionBaseDeDatos;
     private Connection conexion;
     private Usuario usuarioAutenticado;
-    //private SerialPort puerto;
     private ConexionArduino conexionArduino;
 
     public Principal() {
@@ -437,6 +436,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         controlBotonApagar.setText("Apagar");
+        controlBotonApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                controlBotonApagarActionPerformed(evt);
+            }
+        });
 
         jLabel12.setText("Dirección de la banda");
 
@@ -784,6 +788,10 @@ public class Principal extends javax.swing.JFrame {
         }
             
     }//GEN-LAST:event_actualizarUsuarioBotonEliminarUsuarioActionPerformed
+
+    private void controlBotonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlBotonApagarActionPerformed
+        conexionArduino.mandarMensaje("0");
+    }//GEN-LAST:event_controlBotonApagarActionPerformed
 
     private void desactivarPestannas() {   // Función que deshabilita las pestañas del programa para que el usuario no pueda acceder a ellas
         for(int i = 1; i < 3; i++) {
