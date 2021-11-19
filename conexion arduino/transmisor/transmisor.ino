@@ -4,7 +4,6 @@
 RH_NRF24 nrf24;   // Se crea el objeto de la antena
 
 bool listoParaTransmitir = true;   // Variable para corroborar que el dispositivo fue inicializado exitosamente
-char estadoDeLaBanda = "0";   // Variable donde se guardará el estado de la banda: 0, apagado; 1, encendido
 
 void setup() {
   // Iniciamos la comunicación con el puerto serie
@@ -38,17 +37,18 @@ void setup() {
 }
 
 void loop() {
-  while(Serial.available() == 0) {   // Se comprueba que haya datos en el puerto serial
+  while(Serial.available() > 0) {   // Se comprueba que haya datos en el puerto serial
     // No se ejecuta nada hasta que se rompa el ciclo
   }
-
-  estadoDeLaBanda = Serial.read();   // Se guarda el dato entrante en la variable
+  
+  String estadoDeLaBanda = Serial.readString();
+  estadoDeLaBanda.trim();
 
   if(estadoDeLaBanda == '\n') {   // Se comprueba que haya un salto de línea, si es así, se ejecuta el siguiente código
     // No se ejecuta nada
   }
   
-  if(estadoDeLaBanda == '0') {
+  if(estadoDeLaBanda.equals("0")) {
     uint8_t mensaje[] = "0";
     Serial.print("Se envió: ");
     Serial.println((char*)mensaje);
@@ -57,7 +57,7 @@ void loop() {
     
   }
 
-  if(estadoDeLaBanda == '1') {
+  if(estadoDeLaBanda.equals("1")) {
     uint8_t mensaje[] = "1";
     Serial.print("Se envió: ");
     Serial.println((char*)mensaje);
