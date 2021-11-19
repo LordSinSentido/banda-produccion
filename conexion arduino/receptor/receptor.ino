@@ -2,17 +2,15 @@
 #include <RH_NRF24.h>   // Librería RadioHead para controlar la antena nrf24
 
 #define pin1 2   // Se define que "pin1" vale 2
-#define pin2 3   // Se define que "pin2" vale 3
 
 RH_NRF24 nrf24;   // Se crea el objeto de la antena
 
 bool listoParaRecibir = true;   // Variable para corroborar que el dispositivo fue inicializado exitosamente
-char estadoDeLaBanda = "0";   // Variable donde se guardará el estado de la banda: 0, apagado; 1, encendido
+String estadoDeLaBanda = "";   // Variable donde se guardará el estado de la banda: 0, apagado; 1, encendido
 
 void setup() {
   // Inicializamos los pines de salida
   pinMode(pin1, OUTPUT);
-  pinMode(pin2, OUTPUT);
   
   // Iniciamos la comunicación con el puerto serie
   Serial.begin(9600);
@@ -50,19 +48,17 @@ void loop() {
     uint8_t len = sizeof(buf);
 
     if(nrf24.recv(buf, &len)) {
-      Serial.print("Se recibió: ");
-      Serial.println((char*)buf);
-      
+
       estadoDeLaBanda = (char*)buf;
 
-      if(estadoDeLabanda == '0') {
-        digitalWrite(pin1, LOW);
-        digitalWrite(pin2, HIGH);
+      if(estadoDeLaBanda == "0") {
+        Serial.println("Apagando banda...");
+        digitalWrite(pin1, HIGH);
       }
 
-      if(estadoDeLaBanda == '1') {
-        digitalWrite(pin1, HIGH);
-        digitalWrite(pin2, LOW);
+      if(estadoDeLaBanda == "1") {
+        Serial.println("Encendiendo banda...");
+        digitalWrite(pin1, LOW);
       }
       
     }else{
