@@ -652,7 +652,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_loginBotonCerrarSesionActionPerformed
 
     private void controlBotonEncenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlBotonEncenderActionPerformed
-        conexionArduino.mandarMensaje("1");
+        conexionArduino.mandarMensaje("2");
     }//GEN-LAST:event_controlBotonEncenderActionPerformed
 
     private void admonTablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_admonTablaUsuariosMouseClicked
@@ -790,7 +790,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_actualizarUsuarioBotonEliminarUsuarioActionPerformed
 
     private void controlBotonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlBotonApagarActionPerformed
-        conexionArduino.mandarMensaje("0");
+        conexionArduino.mandarMensaje("1");
     }//GEN-LAST:event_controlBotonApagarActionPerformed
 
     private void desactivarPestannas() {   // Función que deshabilita las pestañas del programa para que el usuario no pueda acceder a ellas
