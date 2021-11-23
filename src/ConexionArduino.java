@@ -19,7 +19,6 @@ public class ConexionArduino {
     public void mandarMensaje(String valor) {
         try {
             puerto.writeString(valor);
-            System.out.println(valor);
         } catch (SerialPortException e) {
             System.out.println(e.getMessage());
         }
